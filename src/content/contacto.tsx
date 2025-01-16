@@ -16,6 +16,7 @@ const ContactoContent = () => {
           sección.
         </p>
       </div>
+      
     );
   };
   

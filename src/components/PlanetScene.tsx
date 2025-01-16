@@ -1,6 +1,6 @@
 import { Canvas, useLoader } from "@react-three/fiber";
-import { OrbitControls, Stars } from "@react-three/drei";
-import { FC, useState } from "react";
+import { OrbitControls, Stars, CameraControls } from "@react-three/drei";
+import { FC, useState, useRef } from "react";
 import * as THREE from "three";
 
 import InicioContent from "@/content/inicio";
@@ -18,8 +18,11 @@ const Planet: FC<{
   position: [number, number, number];
   onClick: () => void;
   texturePath: string;
-}> = ({ position, onClick, texturePath }) => {
+  isVisible: boolean;
+}> = ({ position, onClick, texturePath, isVisible }) => {
   const texture = useLoader(THREE.TextureLoader, texturePath);
+
+  if (!isVisible) return null;
 
   return (
     <mesh
@@ -27,22 +30,6 @@ const Planet: FC<{
       onClick={(e) => {
         e.stopPropagation();
         onClick();
-      }}
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        const object = e.object;
-        if (object instanceof THREE.Mesh) {
-          object.material.emissiveIntensity = 0.5;
-          object.material.needsUpdate = true;
-        }
-      }}
-      onPointerOut={(e) => {
-        e.stopPropagation();
-        const object = e.object;
-        if (object instanceof THREE.Mesh) {
-          object.material.emissiveIntensity = 0;
-          object.material.needsUpdate = true;
-        }
       }}
     >
       <sphereGeometry args={[0.8, 64, 64]} />
@@ -58,10 +45,25 @@ const Planet: FC<{
 };
 
 const PlanetScene: FC = () => {
-  const [activeContent, setActiveContent] = useState<string>("");
+  const [activePlanet, setActivePlanet] = useState<string | null>(null);
+  const cameraControlsRef = useRef<any>();
 
-  const handlePlanetClick = (name: string) => {
-    setActiveContent(name);
+  const handlePlanetClick = (
+    name: string,
+    position: [number, number, number]
+  ) => {
+    setActivePlanet(name);
+    if (cameraControlsRef.current) {
+      cameraControlsRef.current.setLookAt(
+        position[0],
+        position[1], 
+        2, 
+        position[0],
+        position[1],
+        0,
+        true
+      );
+    }
   };
 
   return (
@@ -88,23 +90,30 @@ const PlanetScene: FC = () => {
           fade
         />
 
+        
+        <CameraControls ref={cameraControlsRef} />
+
+        
         <Planet
           name="Inicio"
-          position={[-4, 0, 0]}
-          onClick={() => handlePlanetClick("Inicio")}
+          position={[0, 0, 0]}
+          onClick={() => handlePlanetClick("Inicio", [0, 0, 0])}
           texturePath="/textures/8k_earth_daymap.jpg"
+          isVisible={activePlanet === null || activePlanet === "Inicio"}
         />
         <Planet
           name="Proyectos"
-          position={[-2, 0, 0]}
-          onClick={() => handlePlanetClick("Proyectos")}
+          position={[2, 0, 0]}
+          onClick={() => handlePlanetClick("Proyectos", [2, 0, 0])}
           texturePath="/textures/8k_mars.jpg"
+          isVisible={activePlanet === null || activePlanet === "Proyectos"}
         />
         <Planet
           name="Contacto"
-          position={[0, 0, 0]}
-          onClick={() => handlePlanetClick("Contacto")}
+          position={[-2, 0, 0]}
+          onClick={() => handlePlanetClick("Contacto", [-2, 0, 0])}
           texturePath="/textures/8k_jupiter.jpg"
+          isVisible={activePlanet === null || activePlanet === "Contacto"}
         />
 
         <OrbitControls />
@@ -119,14 +128,14 @@ const PlanetScene: FC = () => {
           padding: "40px",
           textAlign: "center",
           background:
-            "linear-gradient(to top, rgba(16, 24, 32, 1), transparent)", // Grey-blue fade
+            "linear-gradient(to top, rgba(16, 24, 32, 1), transparent)",
           color: "white",
           fontSize: "1.2rem",
           transition: "opacity 0.5s",
-          opacity: activeContent ? 1 : 0,
+          opacity: activePlanet ? 1 : 0,
         }}
       >
-        {activeContent && contentMap[activeContent]}
+        {activePlanet && contentMap[activePlanet]}
       </div>
     </div>
   );

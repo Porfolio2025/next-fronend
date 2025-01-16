@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.0",
     "@react-three/drei": "^9.121.2",
     "@react-three/fiber": "^8.17.12",
+    "camera-controls": "^2.9.0",
     "next": "15.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
