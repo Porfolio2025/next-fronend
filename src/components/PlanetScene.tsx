@@ -3,12 +3,22 @@ import { OrbitControls, Stars } from "@react-three/drei";
 import { FC, useState } from "react";
 import * as THREE from "three";
 
+import InicioContent from "@/content/inicio";
+import ProyectoContent from "@/content/proyectos";
+import ContactoContent from "@/content/contacto";
+
+const contentMap: { [key: string]: JSX.Element } = {
+  Inicio: <InicioContent />,
+  Proyectos: <ProyectoContent />,
+  Contacto: <ContactoContent />,
+};
+
 const Planet: FC<{
   name: string;
   position: [number, number, number];
   onClick: () => void;
   texturePath: string;
-}> = ({ name, position, onClick, texturePath }) => {
+}> = ({ position, onClick, texturePath }) => {
   const texture = useLoader(THREE.TextureLoader, texturePath);
 
   return (
@@ -106,17 +116,17 @@ const PlanetScene: FC = () => {
           bottom: 0,
           left: 0,
           width: "100%",
-          padding: "20px",
+          padding: "40px",
           textAlign: "center",
           background:
-            "linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent)",
+            "linear-gradient(to top, rgba(16, 24, 32, 1), transparent)", // Grey-blue fade
           color: "white",
-          fontSize: "1.5rem",
+          fontSize: "1.2rem",
           transition: "opacity 0.5s",
           opacity: activeContent ? 1 : 0,
         }}
       >
-        {activeContent && <div>{activeContent} - Contenido relacionado</div>}
+        {activeContent && contentMap[activeContent]}
       </div>
     </div>
   );
