@@ -11,3 +11,8 @@ body, html, #__next {
   overflow: hidden;
   background-color: black; /* Fondo negro */
 }
+
+:root {
+  --background: #f0f0f0; /* Ejemplo */
+  --foreground: #333333; /* Ejemplo */
+}

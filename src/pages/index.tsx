@@ -1,5 +1,6 @@
-import PlanetScene from '@/components/PlanetScene';
-import '@/app/globals.css'
+import PlanetScene from "@/components/PlanetScene";
+import "@/app/globals.css";
+
 export default function Home() {
   return (
     <main>
