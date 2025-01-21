@@ -56,13 +56,20 @@ const PlanetScene: FC = () => {
     if (cameraControlsRef.current) {
       cameraControlsRef.current.setLookAt(
         position[0],
-        position[1], 
-        2, 
+        position[1],
+        2,
         position[0],
         position[1],
         0,
         true
       );
+    }
+  };
+
+  const handleBackToPlanets = () => {
+    setActivePlanet(null);
+    if (cameraControlsRef.current) {
+      cameraControlsRef.current.setLookAt(0, 0, 7, 0, 0, 0, true);
     }
   };
 
@@ -82,10 +89,8 @@ const PlanetScene: FC = () => {
           fade
         />
 
-        
         <CameraControls ref={cameraControlsRef} />
 
-        
         <Planet
           name="Inicio"
           position={[0, 0, 0]}
@@ -110,6 +115,15 @@ const PlanetScene: FC = () => {
 
         <OrbitControls />
       </Canvas>
+
+      {activePlanet && (
+        <button
+          onClick={handleBackToPlanets}
+          className="absolute top-10 left-1/2 transform -translate-x-1/2 px-4 py-2 border-2 border-[#d1e8ff] text-[#d1e8ff] rounded-lg hover:bg-[#d1e8ff] hover:text-black transition duration-300 shadow-white z-50"
+        >
+          Volver a los planetas
+        </button>
+      )}
 
       <div
         className={`absolute bottom-0 left-0 w-full p-10 text-center text-white text-xl bg-gradient-to-t from-[#101820] to-transparent transition-opacity duration-500 ${

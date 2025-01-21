@@ -13,20 +13,20 @@ const InicioContent = () => {
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center relative">
       <h1 className="mb-2 text-3xl font-bold text-[#D1E8FF]">Inicio</h1>
       <p className="text-base text-[#A9BDC5]">
         Bienvenido al inicio. Aquí puedes añadir información relevante de esta
         sección.
       </p>
-      {/* Flecha para bajar */}
+
       <div
         onClick={handleScrollDown}
         className="mt-5 inline-block cursor-pointer animate-bounce"
       >
         <ArrowDownwardIcon className="text-[#D1E8FF] text-5xl" />
       </div>
-      {/* Animación personalizada */}
+
       <style>
         {`
           @keyframes bounce {
@@ -42,7 +42,7 @@ const InicioContent = () => {
           }
         `}
       </style>
-      {/* Contenido adicional */}
+
       <div
         id="more-content"
         className={`${
