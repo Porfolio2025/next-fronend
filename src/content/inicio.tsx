@@ -13,37 +13,20 @@ const InicioContent = () => {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1
-        style={{
-          marginBottom: "10px",
-          fontSize: "2rem",
-          fontWeight: "bold",
-          color: "#D1E8FF",
-        }}
-      >
-        Inicio
-      </h1>
-      <p style={{ fontSize: "1rem", color: "#A9BDC5" }}>
-        Bienvenido al inicio. Aquí puedes añadir información relevante de esta sección.
+    <div className="text-center">
+      <h1 className="mb-2 text-3xl font-bold text-[#D1E8FF]">Inicio</h1>
+      <p className="text-base text-[#A9BDC5]">
+        Bienvenido al inicio. Aquí puedes añadir información relevante de esta
+        sección.
       </p>
       {/* Flecha para bajar */}
       <div
         onClick={handleScrollDown}
-        style={{
-          cursor: "pointer",
-          marginTop: "20px",
-          display: "inline-block",
-          animation: "bounce 2s infinite",
-        }}
+        className="mt-5 inline-block cursor-pointer animate-bounce"
       >
-        <ArrowDownwardIcon
-          style={{
-            fontSize: "3rem",
-            color: "#D1E8FF",
-          }}
-        />
+        <ArrowDownwardIcon className="text-[#D1E8FF] text-5xl" />
       </div>
+      {/* Animación personalizada */}
       <style>
         {`
           @keyframes bounce {
@@ -62,20 +45,17 @@ const InicioContent = () => {
       {/* Contenido adicional */}
       <div
         id="more-content"
-        style={{
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? "translateY(0)" : "translateY(50px)",
-          transition: "opacity 0.8s ease, transform 0.8s ease",
-          padding: "20px",
-          marginTop: "50px",
-          background: "rgba(16, 24, 32, 0.9)",
-          color: "#fff",
-          borderRadius: "8px",
-          display: isVisible ? "block" : "none", // Ocultarlo completamente si no es visible
-        }}
+        className={`${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        }  duration-800 ease-in-out p-5 mt-12 bg-[rgba(16,24,32,0.9)] text-white rounded-lg ${
+          isVisible ? "block" : "hidden"
+        }`}
       >
-        <h2>Más Contenido</h2>
-        <p>Aquí puedes añadir más contenido relacionado con la sección seleccionada.</p>
+        <h2 className="text-lg font-bold">Más Contenido</h2>
+        <p>
+          Aquí puedes añadir más contenido relacionado con la sección
+          seleccionada.
+        </p>
       </div>
     </div>
   );

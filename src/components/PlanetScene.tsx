@@ -46,7 +46,7 @@ const Planet: FC<{
 
 const PlanetScene: FC = () => {
   const [activePlanet, setActivePlanet] = useState<string | null>(null);
-  const cameraControlsRef = useRef<any>();
+  const cameraControlsRef = useRef<CameraControls>(null!);
 
   const handlePlanetClick = (
     name: string,
@@ -68,15 +68,7 @@ const PlanetScene: FC = () => {
 
   return (
     <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        margin: 0,
-        padding: 0,
-        overflow: "hidden",
-        position: "relative",
-        background: "black",
-      }}
+      className="w-screen h-screen m-0 p-0 overflow-hidden relative bg-black"
     >
       <Canvas camera={{ position: [0, 0, 7], fov: 70 }}>
         <ambientLight intensity={0.7} />
@@ -120,20 +112,9 @@ const PlanetScene: FC = () => {
       </Canvas>
 
       <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          padding: "40px",
-          textAlign: "center",
-          background:
-            "linear-gradient(to top, rgba(16, 24, 32, 1), transparent)",
-          color: "white",
-          fontSize: "1.2rem",
-          transition: "opacity 0.5s",
-          opacity: activePlanet ? 1 : 0,
-        }}
+        className={`absolute bottom-0 left-0 w-full p-10 text-center text-white text-xl bg-gradient-to-t from-[#101820] to-transparent transition-opacity duration-500 ${
+          activePlanet ? "opacity-100" : "opacity-0"
+        }`}
       >
         {activePlanet && contentMap[activePlanet]}
       </div>
