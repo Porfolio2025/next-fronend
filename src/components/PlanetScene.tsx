@@ -7,11 +7,11 @@ import Planet from "@/components/Planet";
 import {
   handlePlanetClick,
   handleBackToPlanets,
-} from "../helpers/planetInteractions";
+} from "@/helpers/planetInteractions";
 
-import InicioContent from "@/content/inicio";
-import ProyectoContent from "@/content/proyectos";
-import ContactoContent from "@/content/contacto";
+import InicioContent from "@/content/Inicio";
+import ProyectoContent from "@/content/Proyectos";
+import ContactoContent from "@/content/Contacto";
 
 const contentMap: ContentMap = {
   Inicio: <InicioContent />,
