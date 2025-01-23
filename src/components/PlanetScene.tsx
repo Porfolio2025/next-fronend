@@ -52,7 +52,7 @@ const PlanetScene: FC = () => {
             )
           }
           args={[0.8, 64, 64]}
-          texturePath="/textures/8k_earth_daymap.jpg"
+          texturePath="/textures/8k_venus_surface.jpg"
           isVisible={activePlanet === null || activePlanet === "Inicio"}
         />
         <Planet
@@ -67,7 +67,7 @@ const PlanetScene: FC = () => {
             )
           }
           args={[0.8, 64, 64]}
-          texturePath="/textures/8k_mars.jpg"
+          texturePath="/textures/8k_mercury.jpg"
           isVisible={activePlanet === null || activePlanet === "Proyectos"}
         />
         <Planet
@@ -82,7 +82,7 @@ const PlanetScene: FC = () => {
             )
           }
           args={[0.8, 64, 64]}
-          texturePath="/textures/8k_jupiter.jpg"
+          texturePath="/textures/8k_earth_daymap.jpg"
           isVisible={activePlanet === null || activePlanet === "Contacto"}
         />
         <Planet
