@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars, CameraControls } from "@react-three/drei";
 import { FC, useState, useRef } from "react";
 
+
 import { ContentMap } from "@/helpers/planetInteractions";
 import Planet from "@/components/Planet";
 import {
@@ -50,6 +51,7 @@ const PlanetScene: FC = () => {
               setActivePlanet
             )
           }
+          args={[0.8, 64, 64]}
           texturePath="/textures/8k_earth_daymap.jpg"
           isVisible={activePlanet === null || activePlanet === "Inicio"}
         />
@@ -64,6 +66,7 @@ const PlanetScene: FC = () => {
               setActivePlanet
             )
           }
+          args={[0.8, 64, 64]}
           texturePath="/textures/8k_mars.jpg"
           isVisible={activePlanet === null || activePlanet === "Proyectos"}
         />
@@ -78,10 +81,18 @@ const PlanetScene: FC = () => {
               setActivePlanet
             )
           }
+          args={[0.8, 64, 64]}
           texturePath="/textures/8k_jupiter.jpg"
           isVisible={activePlanet === null || activePlanet === "Contacto"}
         />
-
+        <Planet
+          name="Sol"
+          position={[10, 0, 0]}
+          scale={[5, 5, 5]}
+          texturePath="/textures/8k_sun.jpg"
+          args={[1, 32, 32]}
+          isVisible={activePlanet === null || activePlanet === "Sol"}
+        />
         <OrbitControls />
       </Canvas>
 

@@ -5,9 +5,11 @@ import useTextureLoader from "@/helpers/useTextureLoader";
 type PlanetProps = {
   name: string;
   position: [number, number, number];
-  onClick: () => void;
+  onClick?: () => void;
   texturePath: string;
-  isVisible: boolean;
+  isVisible?: boolean;
+  args: [number, number, number];
+  scale?: [number, number, number];
 };
 
 const Planet: FC<PlanetProps> = ({
@@ -15,6 +17,8 @@ const Planet: FC<PlanetProps> = ({
   onClick,
   texturePath,
   isVisible,
+  args,
+  scale = 1,
 }) => {
   const texture = useTextureLoader(texturePath);
 
@@ -23,12 +27,15 @@ const Planet: FC<PlanetProps> = ({
   return (
     <mesh
       position={position}
+      scale={scale}
       onClick={(e) => {
         e.stopPropagation();
-        onClick();
+        if (onClick) {
+          onClick();
+        }
       }}
     >
-      <sphereGeometry args={[0.8, 64, 64]} />
+      <sphereGeometry args={args} />
       <meshStandardMaterial
         map={texture}
         roughness={0.4}
