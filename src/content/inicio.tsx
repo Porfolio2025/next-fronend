@@ -17,8 +17,8 @@ const InicioContent = () => {
     <div className="text-center relative">
       <h1 className="mb-2 text-3xl font-bold text-[#D1E8FF]">Inicio</h1>
       <p className="text-base text-[#A9BDC5]">
-        Bienvenido al inicio. Aquí puedes añadir información relevante de esta
-        sección.
+        Bienvenido al inicio de este recorrido. Descubre más sobre mí, mi
+        experiencia y mi visión navegando por esta sección.
       </p>
 
       <div
@@ -50,10 +50,6 @@ const InicioContent = () => {
           isVisible ? "translate-y-0" : "translate-y-full"
         }`}
       >
-        <h1 className="text-3xl font-bold text-[#F2D7D5] mb-10 text-center drop-shadow-lg">
-          Inicio
-        </h1>
-
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 w-full max-w-5xl">
           <div className="p-5 bg-[rgba(255,255,255,0.1)] rounded-lg shadow-lg text-center">
             <h2 className="text-xl font-bold text-[#FFD7BA] mb-4 drop-shadow-lg">
