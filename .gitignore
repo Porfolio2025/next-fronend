@@ -47,8 +47,6 @@ coverage/
 Thumbs.db
 Desktop.ini
 
-# Tailwind CSS
-tailwind.config.js
 postcss.config.js
 
 # Others
