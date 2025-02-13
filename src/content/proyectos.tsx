@@ -15,24 +15,24 @@ const ProyectosContent = () => {
 
   const proyectos = [
     {
+      nombre: "Angular App",
+      descripcion: "Es una app de angular que consume la API de symfony.",
+      enlace: "https://main.d38fw2i109di6m.amplifyapp.com/",
+    },
+    {
+      nombre: "Symfony",
+      descripcion: "Proyecto web desarrollado con el framework Symfony.",
+      enlace: "https://api-riot-2025.click/",
+    },
+    {
       nombre: "API Node",
       descripcion: "API desarrollada con Node.js y Express.",
       enlace: "https://github.com/xhris-spec/api-node",
     },
     {
-      nombre: "Docker",
-      descripcion: "Configuración y uso de contenedores con Docker.",
-      enlace: "https://github.com/xhris-spec/docker",
-    },
-    {
       nombre: "Reflex",
       descripcion: "Proyecto de reflexión y aprendizaje personal.",
       enlace: "https://github.com/xhris-spec/reflex",
-    },
-    {
-      nombre: "Symfony",
-      descripcion: "Proyecto web desarrollado con el framework Symfony.",
-      enlace: "https://github.com/xhris-spec/symfony",
     },
   ];
 
@@ -94,7 +94,7 @@ const ProyectosContent = () => {
                 rel="noopener noreferrer"
                 className="text-[#D1E8FF] underline hover:text-[#A9BDC5]"
               >
-                Ver en GitHub
+                Ver
               </a>
             </div>
           ))}
