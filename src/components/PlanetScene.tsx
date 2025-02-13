@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars, CameraControls } from "@react-three/drei";
 import { FC, useState, useRef } from "react";
 
+import * as THREE from "three";
 
 import { ContentMap } from "@/helpers/planetInteractions";
 import Planet from "@/components/Planet";
@@ -20,6 +21,10 @@ const contentMap: ContentMap = {
   Contacto: <ContactoContent />,
 };
 
+const CUSTOM_MOUSE = {
+  ...THREE.MOUSE,
+  NONE: 0 as unknown as THREE.MOUSE
+};
 const PlanetScene: FC = () => {
   const [activePlanet, setActivePlanet] = useState<string | null>(null);
   const cameraControlsRef = useRef<CameraControls>(null!);
@@ -38,7 +43,16 @@ const PlanetScene: FC = () => {
           fade
         />
 
-        <CameraControls ref={cameraControlsRef} />
+        <CameraControls
+          ref={cameraControlsRef}
+          mouseButtons={{
+            left: CUSTOM_MOUSE.NONE,
+            middle: CUSTOM_MOUSE.NONE,
+            right: CUSTOM_MOUSE.NONE,
+            wheel: CUSTOM_MOUSE.NONE,
+          }}
+          enabled={true}
+        />
 
         <Planet
           name="Inicio"
@@ -93,7 +107,7 @@ const PlanetScene: FC = () => {
           args={[1, 32, 32]}
           isVisible={activePlanet === null || activePlanet === "Sol"}
         />
-        <OrbitControls />
+        <OrbitControls enabled={false} />
       </Canvas>
 
       {activePlanet && (
