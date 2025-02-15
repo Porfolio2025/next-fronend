@@ -8,10 +8,7 @@ import * as THREE from "three";
 
 import { ContentMap } from "@/helpers/planetInteractions";
 
-import {
-  handlePlanetClick,
-  handleBackToPlanets,
-} from "@/helpers/planetInteractions";
+import { handleBackToPlanets } from "@/helpers/planetInteractions";
 
 import InicioContent from "@/content/Inicio";
 import ProyectoContent from "@/content/Proyectos";
@@ -61,14 +58,14 @@ const PlanetScene: FC = () => {
           path="/models/evironment_pack_planets.glb"
           position={[-0.1, -1, 1.5]}
           scale={[2, 2, 2]}
-          onClick={() =>
-            handlePlanetClick(
-              "Sol",
-              [0, 0, -2],
-              cameraControlsRef,
-              setActivePlanet
-            )
-          }
+          // onClick={() =>
+          //   handlePlanetClick(
+          //     "Sol",
+          //     [0, 0, -2],
+          //     cameraControlsRef,
+          //     setActivePlanet
+          //   )
+          // }
         />
 
         <OrbitControls enabled={false} />

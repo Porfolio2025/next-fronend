@@ -6,7 +6,7 @@ type GLBModelProps = {
   path: string;
   position: [number, number, number];
   scale: [number, number, number];
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const GLBModel: FC<GLBModelProps> = ({ path, position, scale, onClick }) => {
