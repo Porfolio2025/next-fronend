@@ -1,4 +1,5 @@
 import { CameraControls } from "@react-three/drei";
+import * as THREE from "three";
 
 export type ContentMap = {
     [key: string]: JSX.Element;
@@ -29,4 +30,9 @@ export const handleBackToPlanets = (setActivePlanet: (name: string | null) => vo
     if (cameraControlsRef.current) {
         cameraControlsRef.current.setLookAt(0, 0, 7, 0, 0, 0, true);
     }
+};
+
+export const CUSTOM_MOUSE = {
+    ...THREE.MOUSE,
+    NONE: 0 as unknown as THREE.MOUSE,
 };

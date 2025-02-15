@@ -1,18 +1,14 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stars, CameraControls } from "@react-three/drei";
+import { OrbitControls, CameraControls } from "@react-three/drei";
 import { FC, useState, useRef } from "react";
-
 import GLBModel from "@/components/GLBModel";
-
-import * as THREE from "three";
-
 import { ContentMap } from "@/helpers/planetInteractions";
-
 import { handleBackToPlanets } from "@/helpers/planetInteractions";
-
 import InicioContent from "@/content/Inicio";
 import ProyectoContent from "@/content/Proyectos";
 import ContactoContent from "@/content/Contacto";
+import { StarryBackground } from "@/components/StarsComponents";
+import { CUSTOM_MOUSE } from "@/helpers/planetInteractions";
 
 const contentMap: ContentMap = {
   Inicio: <InicioContent />,
@@ -20,28 +16,19 @@ const contentMap: ContentMap = {
   Contacto: <ContactoContent />,
 };
 
-const CUSTOM_MOUSE = {
-  ...THREE.MOUSE,
-  NONE: 0 as unknown as THREE.MOUSE,
-};
-
 const PlanetScene: FC = () => {
   const [activePlanet, setActivePlanet] = useState<string | null>(null);
   const cameraControlsRef = useRef<CameraControls>(null!);
 
   return (
-    <div className="w-screen h-screen m-0 p-0 overflow-hidden relative bg-black">
+    <div
+      className="w-screen h-screen m-0 p-0 overflow-hidden relative"
+      style={{ background: "linear-gradient(180deg, #0b0023, #1b004e)" }}
+    >
       <Canvas camera={{ position: [0, 0, 5], fov: 70 }}>
         <ambientLight intensity={0.7} />
-        <directionalLight position={[10, 10, 10]} intensity={2.0} castShadow />
-        <Stars
-          radius={200}
-          depth={50}
-          count={5000}
-          factor={7}
-          saturation={1}
-          fade
-        />
+        <directionalLight position={[5, 5, 5]} intensity={2.0} castShadow />
+        <StarryBackground />
 
         <CameraControls
           ref={cameraControlsRef}
@@ -58,6 +45,7 @@ const PlanetScene: FC = () => {
           path="/models/evironment_pack_planets.glb"
           position={[-0.1, -1, 1.5]}
           scale={[2, 2, 2]}
+          //TODO: Handle planet click
           // onClick={() =>
           //   handlePlanetClick(
           //     "Sol",
