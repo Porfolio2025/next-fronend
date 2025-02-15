@@ -2,10 +2,12 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars, CameraControls } from "@react-three/drei";
 import { FC, useState, useRef } from "react";
 
+import GLBModel from "@/components/GLBModel";
+
 import * as THREE from "three";
 
 import { ContentMap } from "@/helpers/planetInteractions";
-import Planet from "@/components/Planet";
+
 import {
   handlePlanetClick,
   handleBackToPlanets,
@@ -23,15 +25,16 @@ const contentMap: ContentMap = {
 
 const CUSTOM_MOUSE = {
   ...THREE.MOUSE,
-  NONE: 0 as unknown as THREE.MOUSE
+  NONE: 0 as unknown as THREE.MOUSE,
 };
+
 const PlanetScene: FC = () => {
   const [activePlanet, setActivePlanet] = useState<string | null>(null);
   const cameraControlsRef = useRef<CameraControls>(null!);
 
   return (
     <div className="w-screen h-screen m-0 p-0 overflow-hidden relative bg-black">
-      <Canvas camera={{ position: [0, 0, 7], fov: 70 }}>
+      <Canvas camera={{ position: [0, 0, 5], fov: 70 }}>
         <ambientLight intensity={0.7} />
         <directionalLight position={[10, 10, 10]} intensity={2.0} castShadow />
         <Stars
@@ -54,59 +57,20 @@ const PlanetScene: FC = () => {
           enabled={true}
         />
 
-        <Planet
-          name="Inicio"
-          position={[0, 0, 0]}
+        <GLBModel
+          path="/models/evironment_pack_planets.glb"
+          position={[-0.1, -1, 1.5]}
+          scale={[2, 2, 2]}
           onClick={() =>
             handlePlanetClick(
-              "Inicio",
-              [0, 0, 0],
+              "Sol",
+              [0, 0, -2],
               cameraControlsRef,
               setActivePlanet
             )
           }
-          args={[0.8, 64, 64]}
-          texturePath="/textures/8k_venus_surface.jpg"
-          isVisible={activePlanet === null || activePlanet === "Inicio"}
         />
-        <Planet
-          name="Proyectos"
-          position={[2, 0, 0]}
-          onClick={() =>
-            handlePlanetClick(
-              "Proyectos",
-              [2, 0, 0],
-              cameraControlsRef,
-              setActivePlanet
-            )
-          }
-          args={[0.8, 64, 64]}
-          texturePath="/textures/8k_mercury.jpg"
-          isVisible={activePlanet === null || activePlanet === "Proyectos"}
-        />
-        <Planet
-          name="Contacto"
-          position={[-2, 0, 0]}
-          onClick={() =>
-            handlePlanetClick(
-              "Contacto",
-              [-2, 0, 0],
-              cameraControlsRef,
-              setActivePlanet
-            )
-          }
-          args={[0.8, 64, 64]}
-          texturePath="/textures/8k_earth_daymap.jpg"
-          isVisible={activePlanet === null || activePlanet === "Contacto"}
-        />
-        <Planet
-          name="Sol"
-          position={[10, 0, 0]}
-          scale={[5, 5, 5]}
-          texturePath="/textures/8k_sun.jpg"
-          args={[1, 32, 32]}
-          isVisible={activePlanet === null || activePlanet === "Sol"}
-        />
+
         <OrbitControls enabled={false} />
       </Canvas>
 
